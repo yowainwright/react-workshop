@@ -17,6 +17,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
+// getAddressFromCoords(lat, lng).then(address => ...)
+
 import getAddressFromCoords from "./utils/getAddressFromCoords";
 import LoadingDots from "./LoadingDots";
 
