@@ -2,6 +2,57 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
+/**
+ * Michael's grips with HoCs:
+ * - Indirection
+ * - Where is the composition happening?
+ * - Static composition, instead of dynamic composition
+ * - Name colisions w/o warnings
+ */
+
+// function withScrollY(Component) {
+//   return class extends React.Component {
+//     state = { y: 0 };
+
+//     handleWindowScroll = () => {
+//       this.setState({ y: window.scrollY });
+//     };
+
+//     componentDidMount() {
+//       this.handleWindowScroll();
+//       window.addEventListener("scroll", this.handleWindowScroll);
+//     }
+
+//     componentWillUnmount() {
+//       window.removeEventListener("scroll", this.handleWindowScroll);
+//     }
+
+//     render() {
+//       return <Component {...this.props} y={this.state.y} />
+//     }
+//   }
+// }
+
+class ScrollY extends React.Component {
+  state = { y: 0 };
+  handleWindowScroll = () => {
+    this.setState({ y: window.scrollY });
+  };
+
+  componentDidMount() {
+    this.handleWindowScroll();
+    window.addEventListener("scroll", this.handleWindowScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleWindowScroll);
+  }
+
+  render() {
+    return this.props.children(this.state.y);
+  }
+}
+
 document.body.style.background = `
   linear-gradient(135deg,
     #1e5799 0%,
@@ -23,36 +74,25 @@ const getHeaderStyle = y => {
     top: pin ? "0px" : `${top + 50}px`,
     textShadow: pin
       ? `0px ${(y - 100) / 5}px ${Math.min(
-          (y - 100) / 10,
-          20
-        )}px rgba(0, 0, 0, 0.5)`
+        (y - 100) / 10,
+        20
+      )}px rgba(0, 0, 0, 0.5)`
       : "none"
   };
 };
 
 class App extends React.Component {
-  state = { y: 0 };
-
-  handleWindowScroll = () => {
-    this.setState({ y: window.scrollY });
-  };
-
-  componentDidMount() {
-    this.handleWindowScroll();
-    window.addEventListener("scroll", this.handleWindowScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleWindowScroll);
-  }
-
   render() {
-    const { y } = this.state;
+    const { y = 0 } = this.props;
 
     return (
-      <div style={{ height: "300vh", color: "white" }}>
-        <h1 style={getHeaderStyle(y)}>Scroll down!</h1>
-      </div>
+      <ScrollY>
+        {y => (
+          <div style={{ height: "300vh", color: "white" }}>
+            <h1 style={getHeaderStyle(y)}>Scroll down!</h1>
+          </div>
+        )}
+      </ScrollY>
     );
   }
 }
