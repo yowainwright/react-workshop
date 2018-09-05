@@ -7,8 +7,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+/**
+ * @returns <div>{some text}</div>
+ */
 function App() {
-  return <div>Hello world!</div>;
+  return <div>Hello Dollar Shave Club!</div>;
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));

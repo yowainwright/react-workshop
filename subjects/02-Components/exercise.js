@@ -10,7 +10,7 @@
 //
 // - Add descriptive propTypes to <App> and <Tabs>
 ////////////////////////////////////////////////////////////////////////////////
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 const styles = {};
@@ -33,24 +33,30 @@ styles.panel = {
   padding: 10
 };
 
-class Tabs extends React.Component {
+class Tabs extends Component {
+  state = { activeIndex: 0 };
+
+  selectTab = (index) => {
+    this.setState({ activeIndex: index });
+  }
   render() {
+    /**
+     * @todo render a tab for each item in data...
+     */
+    const data = this.props.data;
+    const activeItem = data[this.state.activeIndex];
     return (
       <div className="Tabs">
-        <div className="Tab" style={styles.activeTab}>
-          Active
-        </div>
-        <div className="Tab" style={styles.tab}>
-          Inactive
-        </div>
-        <div className="TabPanel" style={styles.panel}>
-          Panel
-        </div>
+        {data.map((tab, index) => {
+          return this.state.activeIndex === index
+            ? (<div className="Tab" style={styles.activeTab} key={index} onClick={() => this.selectTab(index)}>{tab.name}</div>)
+            : (<div className="Tab" style={styles.tab} key={index} onClick={() => this.selectTab(index)}>{tab.name}</div>)
+        })}
+        <div className="TabPanel" style={styles.panel}>{activeItem.description}</div>
       </div>
     );
   }
 }
-
 class App extends React.Component {
   render() {
     return (
