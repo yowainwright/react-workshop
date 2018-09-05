@@ -10,8 +10,8 @@
 //
 // Got extra time?
 //
-// - If there are more than two characters in the "state" field, let the user
-//   know they should use the two-character abbreviation
+// - If there are more than two characters in the "state" field, let the user ✅
+//   know they should use the two-character abbreviation ✅
 // - Save the state of the form and restore it when the page first loads, in
 //   case the user accidentally closes the tab before the form is submitted
 ////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ class CheckoutForm extends React.Component {
 
     const values = serializeForm(event.target, { hash: true });
 
-    console.log('here', values);
+    console.log('Submitted form: ', values);
   };
 
   render() {
@@ -81,6 +81,9 @@ class CheckoutForm extends React.Component {
                     })
                 }} />
               </label>
+              {this.state.billingState.length > 2 && (
+                <p style={{ color: 'red' }}>Error</p>
+              )}
             </p>
           </fieldset>
 
