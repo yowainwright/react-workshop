@@ -1,5 +1,9 @@
 ## Welcome to React Training!
 
+> **My changes**
+> - Add `.nvmrc` (10)
+> - Ensure that [React Training remote master](https://gist.github.com/CristinaSolana/1885435) is tracked!
+
 This repo contains the course material for [React Training](https://reacttraining.com/). Before attending the training, please make sure you can run this repository.
 
 First, install [git](http://git-scm.com/downloads) and the latest stable version of [node](https://nodejs.org/). Then:
