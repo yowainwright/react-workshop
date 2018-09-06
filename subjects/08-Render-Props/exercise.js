@@ -22,7 +22,11 @@ import PropTypes from "prop-types";
 import getAddressFromCoords from "./utils/getAddressFromCoords";
 import LoadingDots from "./LoadingDots";
 
-class App extends React.Component {
+class GeoPosition extends React.Component {
+  static propTypes = {
+    children: PropTypes.func.isRequired
+  };
+
   state = {
     coords: {
       latitude: null,
@@ -52,19 +56,30 @@ class App extends React.Component {
   }
 
   render() {
+    return this.props.children(this.state);
+  }
+}
+
+class App extends React.Component {
+
+  render() {
     return (
       <div>
         <h1>Geolocation</h1>
-        {this.state.error ? (
-          <div>Error: {this.state.error.message}</div>
-        ) : (
-          <dl>
-            <dt>Latitude</dt>
-            <dd>{this.state.coords.latitude || <LoadingDots />}</dd>
-            <dt>Longitude</dt>
-            <dd>{this.state.coords.longitude || <LoadingDots />}</dd>
-          </dl>
-        )}
+        <GeoPosition>
+          {state =>
+            state.error ? (
+              <div>Error: {state.error.message}</div>
+            ) : (
+                <dl>
+                  <dt>Latitude</dt>
+                  <dd>{state.coords.latitude || <LoadingDots />}</dd>
+                  <dt>Longitude</dt>
+                  <dd>{state.coords.longitude || <LoadingDots />}</dd>
+                </dl>
+              )
+          }
+        </GeoPosition>
       </div>
     );
   }
