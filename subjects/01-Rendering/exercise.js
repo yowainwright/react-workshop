@@ -29,10 +29,18 @@ const DATA = {
   ]
 };
 
-function Menu() {
-  return <div>Open the console, you have failing tests.</div>;
+function Menu({ title, items}) {
+  return <div>
+    <h1>{title}</h1>
+    Open the console, you have failing tests.
+    <ul>
+      {items.filter(({ type }) => type === 'mexican')
+        .sort(sortBy('name'))
+        .map(({ id, name }) => <li key={id}>{name}</li>)}
+    </ul>
+    </div>;
 }
 
-ReactDOM.render(<Menu />, document.getElementById("app"));
+ReactDOM.render(<Menu {...DATA} />, document.getElementById("app"));
 
 require("./tests").run();
