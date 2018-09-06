@@ -3,9 +3,9 @@
 //
 // Implement a radio group form control with the API found in <App>.
 //
-// - Clicking a <RadioOption> should update the value of <RadioGroup>
-// - The selected <RadioOption> should pass the correct value to its <RadioIcon>
-// - The `defaultValue` should be set on first render
+// - Clicking a <RadioOption> should update the value of <RadioGroup> ✅
+// - The selected <RadioOption> should pass the correct value to its <RadioIcon> ✅
+// - The `defaultValue` should be set on first render ✅
 //
 // Got extra time?
 //
@@ -21,26 +21,44 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
+
+/**
+ * RadioGroup
+ * ----
+ * Radio group is the parent most component
+ * Data is passed down to the Radio Options
+ */
 class RadioGroup extends React.Component {
+
   static propTypes = {
     defaultValue: PropTypes.string,
   };
 
   state = { value: this.props.defaultValue };
 
+  /**
+   * @param {value} value is the value of the selected Radio
+   * which updates the sta
+   */
   select(value) {
     this.setState({ value }, () => {
+      /**
+       * `onChange` is added to the parent component (RadioGroup)
+       * making it aware of changes to children
+       */
       this.props.onChange(this.state.value);
     });
   }
 
   render() {
-    console.log('RadioGroup:', this.props);
+    /**
+     * maps through children  of RadioGroup &
+     * clones children with neccessary props
+     */
     const children = React.Children.map(this.props.children, child => React.cloneElement(child, {
       isSelected: child.props.value === this.state.value,
       onClick: () => this.select(child.props.value)
-    })
-    );
+    }));
     return <div>{children}</div>;
   }
 }
@@ -51,7 +69,6 @@ class RadioOption extends React.Component {
   };
 
   render() {
-    console.log('RadioOption: ', this.props);
     const { onClick, isSelected, children } = this.props;
     return (
       <div onClick={onClick}>
