@@ -49,11 +49,12 @@ class ListView extends React.Component {
     const items = [];
     const startIndex = Math.floor(scrollTop / rowHeight);
     const measurableHeight = Math.ceil((availableHeight / rowHeight) + 1, numRows);
-    const endIndex = Math.min(startIndex - measurableHeight);
-    console.log('figuring: ', scrollTop, rowHeight, measurableHeight, endIndex);
+    const endIndex = Math.min(startIndex + measurableHeight);
+    const calculatedPaddingTop = (startIndex * rowHeight)
+    console.log('figuring: ', scrollTop, rowHeight, measurableHeight, endIndex, calculatedPaddingTop);
 
     let index = startIndex;
-    while (index < numRows) {
+    while (index < endIndex) {
       items.push(<li key={index}>{renderRowAtIndex(index)}</li>);
       index++;
     }
@@ -64,8 +65,8 @@ class ListView extends React.Component {
         onScroll={this.figureOutScrolling}
         ref={node => (this.node = node)}
       >
-        <div style={{ height: totalHeight }}>
-          <ol>{items}</ol>
+        <div style={{ height: totalHeight, paddingTop: calculatedPaddingTop }}>
+          <ol>{items}{console.log(items.length)}</ol>
         </div>
       </div>
     );
