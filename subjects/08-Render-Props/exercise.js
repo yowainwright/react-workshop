@@ -9,9 +9,9 @@
 //
 // - Create a <GeoAddress> component that translates the geo coordinates to a
 //   physical address and prints it to the screen (hint: use
-//   `getAddressFromCoords`)
+//   `getAddressFromCoords`) ✅
 // - You should be able to compose <GeoPosition> and <GeoAddress> beneath it to
-//   naturally compose both the UI and the state needed to render it
+//   naturally compose both the UI and the state needed to render it ✅
 ////////////////////////////////////////////////////////////////////////////////
 import React from "react";
 import ReactDOM from "react-dom";
@@ -60,8 +60,40 @@ class GeoPosition extends React.Component {
   }
 }
 
-class App extends React.Component {
+class GeoAddress extends React.Component {
+  static propTypes = {
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+    children: PropTypes.func.isRequired
+  };
 
+  state = { address: null };
+
+  componentDidMount() {
+    //
+    if (this.props.latitude && this.props.longitude) this.getAddress();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.latitude !== this.props.latitude ||
+      prevProps.longitude !== this.props.longitude
+    ) this.getAddress();
+  }
+
+  getAddress() {
+    const { latitude, longitude } = this.props;
+    getAddressFromCoords(latitude, longitude)
+      .then(address => this.setState({ address }))
+  }
+
+  render() {
+    return this.props.children(this.state);
+  }
+
+}
+
+class App extends React.Component {
   render() {
     return (
       <div>
@@ -80,6 +112,16 @@ class App extends React.Component {
               )
           }
         </GeoPosition>
+        <h1>GeoAddress</h1>
+        <GeoPosition>
+          {({ coords }) => (
+            <GeoAddress latitude={coords.latitude} longitude={coords.longitude}>
+              {({ address }) => <p>{address || <LoadingDots />}</p>}
+            </GeoAddress>)
+
+          }
+        </GeoPosition>
+
       </div>
     );
   }
