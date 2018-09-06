@@ -2,10 +2,30 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-class TodoItem extends React.Component {
+/**
+ * PureComponents
+ * ---
+ * should not be a default
+ * can be a friend in a reconsilation phase
+ * is an optimization for something like a long list of items
+ */
+
+/**
+ * shouldComponentUpdate
+ * ---
+ * protects from updating everything if there is no update
+ */
+class TodoItem extends React.PureComponent {
   state = {
     done: false
   };
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (
+  //     this.props.body !== nextProps.body ||
+  //     this.state.done !== nextState.done
+  //   );
+  // }
 
   render() {
     return (
