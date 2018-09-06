@@ -13,7 +13,7 @@
 //   function that calls `ReactDOM.render`, and then you'll need to call it in
 //   the event handlers of the form controls)
 ////////////////////////////////////////////////////////////////////////////////
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import sortBy from "sort-by";
 
@@ -29,16 +29,23 @@ const DATA = {
   ]
 };
 
-function Menu({ title, items}) {
-  return <div>
-    <h1>{title}</h1>
-    Open the console, you have failing tests.
-    <ul>
-      {items.filter(({ type }) => type === 'mexican')
-        .sort(sortBy('name'))
-        .map(({ id, name }) => <li key={id}>{name}</li>)}
-    </ul>
-    </div>;
+class Menu extends Component {
+  render() {
+    const { title, items } = this.props
+    return (
+      <div>
+        <h1>{title}</h1>
+        {/*<select>
+          {items.map(({ id, type }) => <option key={id}>{type}</option> )}
+        </select>*/}
+        <ul>
+          {items.filter(({ type }) => type === 'mexican')
+            .sort(sortBy('name'))
+            .map(({ id, name }) => <li key={id}>{name}</li>)}
+        </ul>
+    </div>
+    );
+  }
 }
 
 ReactDOM.render(<Menu {...DATA} />, document.getElementById("app"));
