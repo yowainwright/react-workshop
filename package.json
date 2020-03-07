@@ -12,7 +12,7 @@
     "ssr-solution": "supervisor -- -r babel-register 'subjects/13-Server-Rendering/solution/server.js'"
   },
   "dependencies": {
-    "angular": "1.5.8",
+    "angular": "1.7.9",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.2.4",
     "babel-preset-env": "^1.6.1",
