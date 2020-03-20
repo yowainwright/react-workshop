@@ -47,7 +47,7 @@
     "mustache": "^2.2.1",
     "open-browser-webpack-plugin": "^0.0.5",
     "prop-types": "^15.5.10",
-    "purecss": "0.6.0",
+    "purecss": "0.6.2",
     "react": "^16.13.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-addons-transition-group": "^15.1.0",
