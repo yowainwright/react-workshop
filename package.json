@@ -58,7 +58,7 @@
     "react-tween-state": "0.1.5",
     "redux": "^3.6.0",
     "redux-logger": "2.10.2",
-    "redux-thunk": "1.0.0",
+    "redux-thunk": "1.0.3",
     "sort-by": "^1.1.0",
     "style-loader": "^0.23.1",
     "supervisor": "^0.11.0",
