@@ -21,7 +21,7 @@
     "babel-register": "^6.9.0",
     "backbone": "^1.2.3",
     "body-parser": "^1.15.2",
-    "bootstrap": "^3.3.4",
+    "bootstrap": "^3.4.1",
     "bootstrap-webpack": "0.0.5",
     "create-react-class": "^15.6.3",
     "css-loader": "^0.23.1",
