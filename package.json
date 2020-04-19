@@ -44,7 +44,7 @@
     "md5": "2.1.0",
     "mkdirp": "^1.0.3",
     "mocha": "7.1.1",
-    "mustache": "^2.2.1",
+    "mustache": "^2.3.2",
     "open-browser-webpack-plugin": "^0.0.5",
     "prop-types": "^15.7.2",
     "purecss": "0.6.2",
