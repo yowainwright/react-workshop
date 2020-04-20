@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "angular": "1.7.9",
-    "babel-core": "^6.23.1",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.5.0",
