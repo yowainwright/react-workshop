@@ -17,7 +17,7 @@
     "angular": "1.8.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.9.0",
