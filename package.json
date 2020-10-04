@@ -68,7 +68,7 @@
     "url-loader": "^1.1.2",
     "webpack": "^1.7.3",
     "webpack-dev-server": "^1.8.0",
-    "snyk": "^1.401.0"
+    "snyk": "^1.406.0"
   },
   "prettier": {
     "printWidth": 72
