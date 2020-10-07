@@ -14,7 +14,7 @@
     "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "angular": "1.8.0",
+    "angular": "1.8.1",
     "babel-core": "^6.23.1",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
